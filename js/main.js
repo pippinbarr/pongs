@@ -1,5 +1,5 @@
 const DEBUG = false;
-const START_SCENE = "splash";
+const START_SCENE = "pong";
 const SCALE = 5;
 
 let config = {
@@ -10,18 +10,8 @@ let config = {
   scene: [
     Boot,
     Preloader,
-    CitizenKane,
-    Lavventura,
-    Rashomon,
-    AuHasardBalthazar,
-    TaxiDriver,
-    TheGodfather,
-    TwoThousandAndOneASpaceOdyssey,
-    BeauTravail,
-    TheConversation,
-    TokyoStory,
-    Splash,
-    Menu
+    Menu,
+    Pong
   ],
   render: {
     // antialias: false,

@@ -8,49 +8,51 @@ let Preloader = new Phaser.Class({
     });
   },
 
-  preload: function() {
-    this.load.atlas('atlas', 'assets/atlas/atlas.png', 'assets/atlas/atlas.json', Phaser.Loader.TEXTURE_ATLAS_JSON_HASH);
-    this.load.image(`tileset`, `assets/tilesets/tileset.png`);
-    this.load.image(`splash`, `assets/splash/combat-at-the-movies-splash.png`);
+  preload: function () {
+    // Assets
 
-    this.load.tilemapTiledJSON(`citizenkane-map`, `assets/tilemaps/citizenkane.json`);
-    this.load.tilemapTiledJSON(`lavventura-map`, `assets/tilemaps/lavventura.json`);
-    this.load.tilemapTiledJSON(`rashomon-map`, `assets/tilemaps/rashomon.json`);
-    this.load.tilemapTiledJSON(`auhasardbalthazar-map`, `assets/tilemaps/auhasardbalthazar.json`);
-    this.load.tilemapTiledJSON(`taxidriver-map`, `assets/tilemaps/taxidriver.json`);
-    this.load.tilemapTiledJSON(`tokyostory-map`, `assets/tilemaps/tokyostory.json`);
-    this.load.tilemapTiledJSON(`thegodfather-map`, `assets/tilemaps/thegodfather.json`);
-    this.load.tilemapTiledJSON(`twothousandandoneaspaceodyssey-map`, `assets/tilemaps/twothousandandoneaspaceodyssey.json`);
-    this.load.tilemapTiledJSON(`beautravail-map`, `assets/tilemaps/beautravail.json`);
-    this.load.tilemapTiledJSON(`theconversation-map`, `assets/tilemaps/theconversation.json`);
+    // Tetris blocks
+    this.load.image(`i-block`, `assets/blocks/IBlock.png`);
+    this.load.image(`l-block`, `assets/blocks/LBlock.png`);
+    this.load.image(`r-block`, `assets/blocks/RBlock.png`);
+    this.load.image(`s-block`, `assets/blocks/SBlock.png`);
+    this.load.image(`square-block`, `assets/blocks/SquareBlock.png`);
+    this.load.image(`t-block`, `assets/blocks/TBlock.png`);
+    this.load.image(`z-block`, `assets/blocks/ZBlock.png`);
 
-    this.load.spritesheet('tank', 'assets/spritesheets/tank-spritesheet.png', {
-      frameWidth: 8,
-      frameHeight: 8,
-      endFrame: 15
-    });
-    this.load.spritesheet('balthazar', 'assets/spritesheets/balthazar-spritesheet.png', {
-      frameWidth: 8,
-      frameHeight: 8,
-      endFrame: 15
-    });
+    // Images
+    this.load.image(`dial`, `assets/images/dial.png`);
+    this.load.image(`dial2`, `assets/images/dial2.png`);
+    this.load.image(`flag1`, `assets/images/flag1.png`);
+    this.load.image(`flag2`, `assets/images/flag2.png`);
+    this.load.image(`particle`, `assets/images/particle.png`);
+    this.load.image(`pong-cabinet`, `assets/images/PongCabinet.png`);
+    this.load.image(`pong-divider`, `assets/images/PongDivider.png`);
+    this.load.image(`pong-wall`, `assets/images/PongWall.png`);
+    this.load.image(`refugee`, `assets/images/refugee.png`);
 
-    this.load.audio('idle', 'assets/sounds/idle.wav');
-    this.load.audio('drive', 'assets/sounds/drive.wav');
-    this.load.audio('shoot', 'assets/sounds/shoot.wav');
-    this.load.audio('click', 'assets/sounds/click.wav');
-    this.load.audio('die', 'assets/sounds/die.wav');
+    this.load.image(`particle`, `assets/particle.png`);
 
-    this.load.audio('you-talkin-to-me', 'assets/sounds/you-talkin-to-me.wav');
-    this.load.audio('rosebud', 'assets/sounds/rosebud.wav');
-    this.load.audio('sunrise', 'assets/sounds/sunrise.wav');
-    this.load.audio('rhythm-of-the-night', 'assets/sounds/rhythm-of-the-night.mp3');
+    // Audio
+    this.load.audio('asharp', `assets/sounds/Asharp.mp3`);
+    this.load.audio('csharp', `assets/sounds/Csharp.mp3`);
+    this.load.audio('correct', `assets/sounds/correct.mp3`);
+    this.load.audio('dsharp', `assets/sounds/Dsharp.mp3`);
+    this.load.audio('f', `assets/sounds/F.mp3`);
+    this.load.audio('fsharp', `assets/sounds/Fsharp.mp3`);
+    this.load.audio('gsharp', `assets/sounds/Gsharp.mp3`);
+    this.load.audio('incorrect', `assets/sounds/incorrect.mp3`);
+    this.load.audio('paddle', `assets/sounds/paddle.mp3`);
+    this.load.audio('point', `assets/sounds/point.mp3`);
+    this.load.audio('wall', `assets/sounds/wall.mp3`);
+
+    // Loading screen visuals
 
     let style = {
-      fontFamily: 'Square',
+      fontFamily: 'Commodore',
     };
-    let title = this.add.text(0, 0, "123456", style);
-    title.visible = false;
+    let invisible = this.add.text(0, 0, "123456", style);
+    invisible.visible = false;
 
     this.cameras.main.setBackgroundColor(0x000000);
 
@@ -65,7 +67,7 @@ let Preloader = new Phaser.Class({
     });
   },
 
-  create: function() {
+  create: function () {
 
     setTimeout(() => {
       this.scene.start(START_SCENE);
