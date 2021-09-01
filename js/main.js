@@ -1,5 +1,5 @@
 const DEBUG = false;
-const START_SCENE = "pong";
+const START_SCENE = "menu";
 const SCALE = 5;
 
 let config = {
@@ -11,7 +11,10 @@ let config = {
     Boot,
     Preloader,
     Menu,
-    Pong
+    Pong,
+    BallPong,
+    BlindPong,
+    GhostPong
   ],
   render: {
     // antialias: false,

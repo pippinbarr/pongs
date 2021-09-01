@@ -6,17 +6,18 @@ const BALL_SIZE = 10;
 const BALL_SPEED = 350;
 const BALL_LAUNCH_DELAY = 1000;
 
-const GAME_OVER_SCORE = 3;
+const GAME_OVER_SCORE = 2;
 
 class Pong extends Phaser.Scene {
 
   constructor(config) {
     super({
-      key: `pong`
+      key: config && config.key ? config.key : `pong`
     });
 
     this.OVERRIDE_CREATE = false;
     this.OVERRIDE_UPDATE = false;
+    this.titleString = `PONG`;
   }
 
   create() {
@@ -31,9 +32,7 @@ AVOID MISSING BALL FOR HIGH SCORE
 
 [SPACE] TO START
 [ESCAPE] TO QUIT`;
-    this.winnerString = `WINNER
-
-`;
+    this.winnerString = `WINNER`;
 
     this.resultString = `[SPACE] TO RESTART
 [ESCAPE] TO EXIT`
@@ -109,7 +108,7 @@ AVOID MISSING BALL FOR HIGH SCORE
       fill: `#fff`,
       align: `left`
     });
-    this.titleText = this.add.text(64, 64, `PONG`, {
+    this.titleText = this.add.text(64, 64, this.titleString, {
       fontFamily: `Commodore`,
       fontSize: 32,
       fill: `#fff`,
@@ -174,13 +173,10 @@ AVOID MISSING BALL FOR HIGH SCORE
     // Input
     this.esc = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ESC);
     this.space = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
-
-    this.input.keyboard.on(`keydown`, (e) => {
-      this.handlePaddleInputDown(e);
-    });
-    this.input.keyboard.on(`keyup`, (e) => {
-      this.handlePaddleInputUp(e);
-    });
+    this.w = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W);
+    this.s = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.S);
+    this.up = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.UP);
+    this.down = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.DOWN);
 
     // And off we go...
 
@@ -208,7 +204,7 @@ AVOID MISSING BALL FOR HIGH SCORE
 
     this.handleSpaceInput();
 
-    // this.handlePaddleInput();
+    this.handlePaddleInput();
   }
 
   handleEscapeInput() {
@@ -231,40 +227,23 @@ AVOID MISSING BALL FOR HIGH SCORE
     }
   }
 
-  handlePaddleInputDown(e) {
+  handlePaddleInput() {
     if (this.state !== `PLAYING`) {
       return;
     }
 
-    if (e.keyCode === Phaser.Input.Keyboard.KeyCodes.W && this.leftPaddle.body.velocity.y >= 0) {
-      this.leftPaddle.setVelocityY(-PADDLE_SPEED);
-    } else if (e.keyCode === Phaser.Input.Keyboard.KeyCodes.S && this.leftPaddle.body.velocity.y <= 0) {
-      this.leftPaddle.setVelocityY(PADDLE_SPEED);
-    }
-
-    if (e.keyCode === Phaser.Input.Keyboard.KeyCodes.UP && this.rightPaddle.body.velocity.y >= 0) {
-      this.rightPaddle.setVelocityY(-PADDLE_SPEED);
-    } else if (e.keyCode === Phaser.Input.Keyboard.KeyCodes.DOWN && this.rightPaddle.body.velocity.y <= 0) {
-      this.rightPaddle.setVelocityY(PADDLE_SPEED);
-    }
+    this.handlePaddle(this.leftPaddle, this.w, this.s);
+    this.handlePaddle(this.rightPaddle, this.up, this.down);
   }
 
-  handlePaddleInputUp(e) {
-    if (this.state !== `PLAYING`) {
-      return;
+  handlePaddle(paddle, up, down) {
+    if (up.isDown && paddle.body.velocity.y >= 0) {
+      paddle.setVelocityY(-PADDLE_SPEED);
+    } else if (down.isDown && paddle.body.velocity.y <= 0) {
+      paddle.setVelocityY(PADDLE_SPEED);
+    } else {
+      paddle.setVelocityY(0);
     }
-    if (e.keyCode === Phaser.Input.Keyboard.KeyCodes.W && this.leftPaddle.body.velocity.y < 0) {
-      this.leftPaddle.setVelocityY(0);
-    } else if (e.keyCode === Phaser.Input.Keyboard.KeyCodes.S && this.leftPaddle.body.velocity.y > 0) {
-      this.leftPaddle.setVelocityY(0);
-    }
-
-    if (e.keyCode === Phaser.Input.Keyboard.KeyCodes.UP && this.rightPaddle.body.velocity.y < 0) {
-      this.rightPaddle.setVelocityY(0);
-    } else if (e.keyCode === Phaser.Input.Keyboard.KeyCodes.DOWN && this.rightPaddle.body.velocity.y > 0) {
-      this.rightPaddle.setVelocityY(0);
-    }
-
   }
 
   resetPlay() {
@@ -338,16 +317,6 @@ AVOID MISSING BALL FOR HIGH SCORE
     this.lastHit = paddle.x < this.width / 2 ? `LEFT` : `RIGHT`;
 
     ball.body.velocity.y += paddle.body.velocity.y;
-
-    if (ball.x + ball.width > paddle.x && ball.x < paddle.x + paddle.width) {
-      // We have one of those "end impact" situations so move the ball away faster
-      if (ball.body.velocity.y < 0 && ball.body.velocity.y > paddle.body.velocity.y) {
-        // Need the ball to go faster downwards!
-        ball.body.velocity.y += (paddle.body.velocity.y - ball.body.velocity.y - 10);
-      } else if (ball.body.velocity.y > 0 && ball.body.velocity.y < paddle.body.velocity.y) {
-        ball.body.velocity.y += (paddle.body.velocity.y - ball.body.velocity.y + 10);
-      }
-    }
   }
 
   checkBall(ball) {

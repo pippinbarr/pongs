@@ -12,9 +12,17 @@ class Menu extends Phaser.Scene {
     // Menu items and input
 
     let menu = [{
-      text: `(P)ONG`,
-      key: `P`,
-      scene: `pong`
+      text: `(A) BALL PONG`,
+      key: `A`,
+      scene: `ball-pong`
+    }, {
+      text: `(B) BLIND PONG`,
+      key: `B`,
+      scene: `blind-pong`
+    }, {
+      text: `(G)HOST PONG`,
+      key: `G`,
+      scene: `ghost-pong`
     }, ];
 
     this.input.keyboard.on('keydown', (e) => {
@@ -35,7 +43,7 @@ class Menu extends Phaser.Scene {
       align: 'center'
     };
     let title = this.add.text(this.game.canvas.width / 2, 20, "PONGS", titleStyle);
-    title.setOrigin(0.5);
+    title.setOrigin(0.5, 0);
 
     let x = 80;
     let y = 170;
