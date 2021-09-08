@@ -20,6 +20,10 @@ class Menu extends Phaser.Scene {
       key: `B`,
       scene: `blind-pong`
     }, {
+      text: `(C) BREAKDOWN PONG`,
+      key: `C`,
+      scene: `breakdown-pong`
+    }, {
       text: `(G)HOST PONG`,
       key: `G`,
       scene: `ghost-pong`

@@ -6,7 +6,7 @@ const BALL_SIZE = 10;
 const BALL_SPEED = 350;
 const BALL_LAUNCH_DELAY = 1000;
 
-const GAME_OVER_SCORE = 2;
+const GAME_OVER_SCORE = 11;
 
 class Pong extends Phaser.Scene {
 
@@ -288,10 +288,6 @@ AVOID MISSING BALL FOR HIGH SCORE
     this.playGraphics.setVisible(false);
     this.instructionGraphics.setVisible(true);
     this.state = `INSTRUCTIONS`;
-  }
-
-  swapTitleAndPlayVisibles() {
-    this.playGraphics.setVisible
   }
 
   setScores(left, right) {

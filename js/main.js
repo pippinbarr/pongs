@@ -14,6 +14,7 @@ let config = {
     Pong,
     BallPong,
     BlindPong,
+    BreakdownPong,
     GhostPong
   ],
   render: {
