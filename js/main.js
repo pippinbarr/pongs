@@ -1,42 +1,36 @@
-const DEBUG = false;
-const START_SCENE = "menu";
-const SCALE = 5;
+/**
+PONGS
+Pippin Barr
 
-let config = {
-  type: Phaser.AUTO,
-  width: 640,
-  height: 480,
-  backgroundColor: "#ff0000",
-  scene: [
-    Boot,
-    Preloader,
-    Menu,
-    Pong,
-    BallPong,
-    BlindPong,
-    BreakdownPong,
-    GhostPong
-  ],
-  render: {
-    // antialias: false,
-    pixelArt: true,
-    // antialiasGL: false
-  },
-  pixelArt: true,
-  // antialias: false,
-  // antialiasGL: false,
-  physics: {
-    default: 'arcade',
-    arcade: {
-      debug: DEBUG
-    }
-  },
-  scale: {
-    mode: Phaser.Scale.FIT,
-    autoCenter: Phaser.Scale.BOTH,
-    width: 640,
-    height: 480,
-  }
-};
+I'm trying to remake my old Flash game PONGS in p5.js.
+*/
 
-let game = new Phaser.Game(config);
+"use strict";
+
+let pong;
+
+/**
+Loads the various images and sounds needed.
+*/
+function preload() {
+
+}
+
+
+/**
+Description of setup
+*/
+function setup() {
+  createCanvas(640, 480);
+  rectMode(CENTER);
+
+  pong = new Pong();
+}
+
+
+/**
+Description of draw()
+*/
+function draw() {
+  pong.update();
+}
