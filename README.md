@@ -1,4 +1,4 @@
-# PONGS
+# PONGS (HTML5 re-release!)
 
 [![Splash](info/images/pongs-banner.png)](https://pippinbarr.github.io/pongs/)
 

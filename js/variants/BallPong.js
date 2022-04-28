@@ -1,84 +1,113 @@
 class BallPong extends Pong {
-
   constructor() {
     super({
-      key: `ball-pong`
+      key: `BALL PONG`
     });
   }
 
   create() {
-    this.titleString = `BALL PONG`;
-    this.ballControlLeft = Math.random() < 0.5;
-
     super.create();
 
-    this.leftScoreLabel.text = this.ballControlLeft ? `BALL` : `PADDLES`;
-    this.rightScoreLabel.text = !this.ballControlLeft ? `BALL` : `PADDLES`;
-    this.instructionText.text = `PLAYER 1: [W] / [S] TO MOVE
+    this.ballControlLeft = Math.random() < 0.5;
 
-PLAYER 2: [UP] / [DOWN] TO MOVE
+    this.instructionsText.text = "" +
+      "PLAYER 1: [W] / [S] TO MOVE\n\n" +
+      "PLAYER 2: [UP] / [DOWN] TO MOVE\n\n" +
+      "[SPACE] TO START\n[ESCAPE] TO QUIT";
 
-[SPACE] TO START
-[ESCAPE] TO QUIT`;
-  }
+    if (this.ballControlLeft) this.leftScoreLabel.text = "BALL";
+    else this.leftScoreLabel.text = "PADDLES";
 
-  update(delta, time) {
-    super.update(time, delta);
+    if (this.ballControlLeft) this.rightScoreLabel.text = "PADDLES";
+    else this.rightScoreLabel.text = "BALL";
   }
 
   checkBall(ball) {
     let point = false;
-    if (ball.x + ball.width / 2 < 0 || ball.x - ball.width / 2 > this.width) {
-      if (this.ballControlLeft) {
-        this.setScores(++this.leftScore, this.rightScore);
-        this.lastPoint = `PLAYER 1`;
-        point = true;
-      } else {
-        this.setScores(this.leftScore, ++this.rightScore);
-        this.lastPoint = `PLAYER 2`;
-        point = true;
-      }
-    }
 
-    if (point && !this.gameIsOver()) {
-      this.postPoint();
+    // If the ball has gone off the left side of the screen
+    // Increase the right hand score, update the text, set point to true
+    if (this.ball.x + this.ball.body.width < 0) {
+      if (this.ballControlLeft) {
+        this.leftScore++;
+      } else {
+        this.rightScore++;
+      }
+      this.lastPoint = Player.TWO;
+      point = true;
+    }
+    // If the ball has gone off the right side of the screen
+    // Increase the left hand score, update the text, set point to true
+    else if (ball.x > this.width) {
+      if (this.ballControlLeft) {
+        this.leftScore++;
+      } else {
+        this.rightScore++;
+      }
+
+      this.lastPoint = Player.ONE;
+      point = true;
+    }
+    this.setScores();
+
+    // If either player is at or over the winning score
+    // and is at least two ahead...
+    if ((this.leftScore >= GAME_OVER_SCORE && this.leftScore - 2 >= this.rightScore) ||
+      (this.rightScore >= GAME_OVER_SCORE && this.rightScore - 2 >= this.leftScore)) {
+      this.pointSFX.play();
+      this.gameOver();
+    }
+    // Otherwise, if a point was scored, we go into the after point mode which
+    // means delaying relaunching the ball
+    else if (point) {
+      this.pointSFX.play();
+      this.resetPlay();
     }
   }
 
   paddleHit(paddle, ball) {
     super.paddleHit(paddle, ball);
 
-    if (this.ballControlLeft) {
-      this.setScores(this.leftScore, ++this.rightScore);
+    if (!this.ballControlLeft) {
+      this.leftScore++;
     } else {
-      this.setScores(++this.leftScore, this.rightScore);
+      this.rightScore++;
     }
+    this.setScores();
   }
 
-  handlePaddleInput(e) {
-    if (this.state !== `PLAYING`) {
-      return;
+  handlePaddleInput() {
+    // HANDLE PADDLE INPUT
+    if (this.ballControlLeft) {
+      this.handleSpecificPaddleInput(this.rightPaddle, this.keys.up, this.keys.down);
+      this.handleSpecificPaddleInput(this.leftPaddle, this.keys.up, this.keys.down);
+    } else {
+      this.handleSpecificPaddleInput(this.rightPaddle, this.keys.w, this.keys.s);
+      this.handleSpecificPaddleInput(this.leftPaddle, this.keys.w, this.keys.s);
     }
+
+    // HANDLE BALL INPUT
+    // this.ball.setVelocityY(0);
+    if (this.ball.body.velocity.x === 0) return;
 
     if (this.ballControlLeft) {
-      this.handlePaddle(this.leftPaddle, this.up, this.down);
-      this.handlePaddle(this.rightPaddle, this.up, this.down);
-      if (this.w.isDown && this.ball.body.velocity.y <= 0) {
-        this.ball.setVelocityY(-BALL_SPEED / 4);
-      }
-      if (this.s.isDown && this.ball.body.velocity.y >= 0) {
-        this.ball.setVelocityY(BALL_SPEED / 4);
+      if (this.keys.w.isDown) {
+        this.ball.setVelocityY(-BALL_SPEED / 3);
+      } else if (this.keys.s.isDown) {
+        this.ball.setVelocityY(BALL_SPEED / 3);
       }
     } else {
-      this.handlePaddle(this.leftPaddle, this.w, this.s);
-      this.handlePaddle(this.rightPaddle, this.w, this.s);
-      if (this.up.isDown && this.ball.body.velocity.y >= 0) {
-        this.ball.setVelocityY(-BALL_SPEED / 4);
-      }
-      if (this.down.isDown && this.ball.body.velocity.y <= 0) {
-        this.ball.setVelocityY(BALL_SPEED / 4);
+      if (this.keys.up.isDown) {
+        this.ball.setVelocityY(-BALL_SPEED / 3);
+      } else if (this.keys.down.isDown) {
+        this.ball.setVelocityY(BALL_SPEED / 3);
       }
     }
-  }
 
+    if (this.ball.y - this.ball.body.height / 2 < 0) {
+      this.ball.y = this.ball.body.height / 2;
+    } else if (this.ball.y + this.ball.body.height / 2 > this.height) {
+      this.ball.y = this.height - this.ball.body.height / 2;
+    }
+  }
 }

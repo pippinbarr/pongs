@@ -1,14 +1,11 @@
 class GhostPong extends Pong {
-
   constructor() {
     super({
-      key: `ghost-pong`
+      key: `GHOST PONG`
     });
   }
 
   create() {
-    this.titleString = `GHOST PONG`;
-
     super.create();
 
     this.leftPaddle.setAlpha(0.5);
@@ -16,7 +13,6 @@ class GhostPong extends Pong {
   }
 
   doCollisions() {
-    this.physics.collide(this.ball, this.walls, this.wallHit.bind(this));
+    this.physics.collide(this.ball, this.walls, this.wallHit, null, this);
   }
-
 }

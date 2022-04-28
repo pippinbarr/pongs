@@ -1,6 +1,8 @@
 const DEBUG = false;
 const START_SCENE = "menu";
 const SCALE = 5;
+const WIDTH = 640;
+const HEIGHT = 480;
 
 let config = {
   type: Phaser.AUTO,
@@ -11,11 +13,43 @@ let config = {
     Boot,
     Preloader,
     Menu,
-    Pong,
-    BallPong,
+    TwoDPong,
+    BallPong, q
     BlindPong,
     BreakdownPong,
-    GhostPong
+    BreakoutPong,
+    ButtonPong,
+    ConjoinedPong,
+    CountdownPong,
+    EduPong,
+    FlashingPong,
+    FertilityPong,
+    GhostPong,
+    InversePong,
+    LaserPong,
+    MemoriesOfPong,
+    PerlinPong,
+    PongForTwo,
+    PongInTheMiddle,
+    PongPong,
+    PongSansFrontiers,
+    PrisonerPong,
+    QTEPong,
+    ReversePong,
+    SeriousPong,
+    ShitPong,
+    ShrinkPong,
+    SnakePong,
+    SwappingPong,
+    TeamPong,
+    TetrisPong,
+    TracePong,
+    TrackAndPong,
+    TrophyPong,
+    TurnBasedPong,
+    UnfairPong,
+    ViennesePong
+    // Pong,
   ],
   render: {
     // antialias: false,
@@ -34,9 +68,9 @@ let config = {
   scale: {
     mode: Phaser.Scale.FIT,
     autoCenter: Phaser.Scale.BOTH,
-    width: 640,
-    height: 480,
-  }
+    width: WIDTH,
+    height: HEIGHT,
+  },
 };
 
 let game = new Phaser.Game(config);

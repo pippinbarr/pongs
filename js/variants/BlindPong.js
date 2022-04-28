@@ -1,52 +1,36 @@
 class BlindPong extends Pong {
-
   constructor() {
     super({
-      key: `blind-pong`
+      key: `BLIND PONG`
     });
   }
 
   create() {
-    this.titleString = `BLIND PONG`;
-    this.ballControlLeft = Math.random() < 0.5;
-
     super.create();
 
-    this.instructionText.text = `PLAYER 1: [W] / [S] TO MOVE
-
-PLAYER 2: [UP] / [DOWN] TO MOVE
-
-BALL ALWAYS SERVED STRAIGHT AHEAD
-PADDLE RESET TO CENTER ON SERVE
-
-[SPACE] TO START
-[ESCAPE] TO QUIT`;
-  }
-
-  update(delta, time) {
-    super.update(time, delta);
-  }
-
-  showPlay() {
-    super.showPlay();
-    // this.playGraphics.setVisible(false);
+    this.instructionsText.text = "" +
+      "PLAYER 1: [W] / [S] TO MOVE\n\n" +
+      "PLAYER 2: [UP] / [DOWN] TO MOVE\n\n" +
+      "BALL ALWAYS SERVED STRAIGHT AHEAD\n\n" +
+      "[SPACE] TO START\n[ESCAPE] TO QUIT";
   }
 
   resetPlay() {
     super.resetPlay();
-    this.leftPaddle.y = this.height / 2;
-    this.rightPaddle.y = this.height / 2;
+
+    this.ball.setVisible(false);
+    this.divider.setVisible(false);
   }
 
   launchBall() {
-    this.state = `PLAYING`;
-    let ballDirection;
-    if (this.lastPoint === `PLAYER 2`) {
-      ballDirection = 0;
-    } else if (this.lastPoint === `PLAYER 1`) {
-      ballDirection = Math.PI;
-    }
-    this.ball.setVelocity(Math.cos(ballDirection) * BALL_SPEED, Math.sin(ballDirection) * BALL_SPEED);
-  }
+    this.state = State.PLAYING;
 
+    if (this.lastPoint === Player.TWO) {
+      this.ball.setVelocity(BALL_SPEED, 0);
+    } else if (this.lastPoint === Player.ONE) {
+      this.ball.setVelocity(-BALL_SPEED, 0);
+    } else {
+      this.ball.setVelocity(Math.random() < 0.5 ? BALL_SPEED : -BALL_SPEED, 0);
+    }
+  }
 }

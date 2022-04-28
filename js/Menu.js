@@ -7,27 +7,31 @@ class Menu extends Phaser.Scene {
   }
 
   create() {
-    this.cameras.main.setBackgroundColor(0x000000);
+    this.cameras.main.setBackgroundColor(0xFF112233);
 
     // Menu items and input
 
-    let menu = [{
-      text: `(A) BALL PONG`,
-      key: `A`,
-      scene: `ball-pong`
-    }, {
-      text: `(B) BLIND PONG`,
-      key: `B`,
-      scene: `blind-pong`
-    }, {
-      text: `(C) BREAKDOWN PONG`,
-      key: `C`,
-      scene: `breakdown-pong`
-    }, {
-      text: `(G)HOST PONG`,
-      key: `G`,
-      scene: `ghost-pong`
-    }, ];
+    let menuKeys = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+    let scenes = [
+      `2D PONG`, `BALL PONG`, `BLIND PONG`, `BREAKDOWN PONG`, `BREAKOUT PONG`,
+      `B.U.T.T.O.N. PONG`, `CONJOINED PONG`, `COUNTDOWN PONG`,
+      `EDUTAINMENT PONG`, `FERTILITY PONG`, `FLASHING PONG`, `GHOST PONG`,
+      `INVERSE PONG`, `LASER PONG`, `MEMORIES OF PONG`, `PERLIN PONG`,
+      `PONG FOR TWO`, `PONG IN THE MIDDLE`, `PONG PONG`, `PONG SANS FRONTIERS`,
+      `PRISONER PONG`, `QTE PONG`, `REVERSE PONG`, `SERIOUS PONG`, `SHIT PONG`,
+      `SHRINK PONG`, `SNAKE PONG`, `SWAPPING PONG`, `TEAM PONG`,
+      `TETRIS PONG`, `TRACE PONG`, `TRACK AND PONG`, `TROPHY PONG`,
+      `TURN-BASED PONG`, `UNFAIR PONG`, `VIENNESE PONG`
+    ];
+
+    let menu = [];
+    for (let i = 0; i < scenes.length; i++) {
+      menu.push({
+        text: `(${menuKeys[i]}) ${scenes[i]}`,
+        key: menuKeys[i],
+        scene: scenes[i]
+      });
+    }
 
     this.input.keyboard.on('keydown', (e) => {
       let key = e.key.toUpperCase();
@@ -60,6 +64,10 @@ class Menu extends Phaser.Scene {
       align: 'center'
     };
     for (let i = 0; i < menu.length; i++) {
+      if (i === 18) {
+        x = this.game.canvas.width / 2 + 35;
+        y = 170;
+      }
       let item = menu[i];
       let itemText = this.add.text(x, y, item.text, itemStyle);
       y += verticalSpacing;

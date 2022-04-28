@@ -46,6 +46,9 @@ let Preloader = new Phaser.Class({
     this.load.audio('point', `assets/sounds/point.mp3`);
     this.load.audio('wall', `assets/sounds/wall.mp3`);
 
+    // Perlin plugin
+    this.load.plugin('rexperlinplugin', 'js/libraries/rexperlinplugin.min.js', true);
+
     // Loading screen visuals
 
     let style = {
