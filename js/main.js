@@ -14,7 +14,7 @@ let config = {
     Preloader,
     Menu,
     TwoDPong,
-    BallPong, q
+    BallPong,
     BlindPong,
     BreakdownPong,
     BreakoutPong,
