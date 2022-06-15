@@ -1,0 +1,1 @@
+/Users/pippinbarr/Dropbox/Develop/Flex\ \(SDK\ 4.6\)/bin/mxmlc ~/Dropbox/Develop/Flash\ Builder/Pongs/src/Pongs.as -sp ~/Dropbox/Develop/Flash\ Builder/Pongs/src/ -sp /Users/pippinbarr/Dropbox/Develop/Flash\ Builder/libraries/flixel -sp /Users/pippinbarr/Dropbox/Develop/Flash\ Builder/Pongs/ -static-link-runtime-shared-libraries=true -o ~/Desktop/PONGS.swf
