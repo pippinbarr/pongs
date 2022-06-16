@@ -1,6 +1,6 @@
-# PONGS
+# *PONGS*
 
-![Splash](images/pongs-banner.png)
+![Banner](images/pongs-banner.png)
 
 ## [Play Online](https://pippinbarr.github.io/pongs/) (desktop only)
 
@@ -16,7 +16,7 @@ You may not be surprised to hear that *PONGS* is based on Atari's PONG. Sound ef
 ~~You can read [my writing about the game](http://www.pippinbarr.com/search.html?q=pongs) on my website.~~ PONGS was featured on [Kill Screen](https://killscreen.com/previously/articles/we-tried-all-36-pippin-barrs-variations-pong-so-you-dont-have-you-should/), [Free Indie Games](http://www.freeindiegam.es/2012/04/pongs-pippin-barr/), [The Verge](http://www.theverge.com/2012/4/11/2941458/pippin-barr-36-pongs-variations), [Rock, Paper, Shotgun](http://www.rockpapershotgun.com/2012/04/11/with-an-s-pongs-is-the-greatest-games/), ~~and [Edge Online](http://www.edge-online.com/features/friday-game-pongs)~~. It has also been discussed in German on [NEGATIV](http://www.negativ-film.de/pong-als-art-game-pippin-barrs-36-pongversionen/) ~~and [Superlevel](http://superlevel.de/spiele/pongs)!~~ [Lorenzo Pilia](http://www.tiif.it/) made an awesome controller for PONGS and you can [watch a video of it](http://www.youtube.com/watch?v=zLJdRQhcn0E)! *PONGS* has been exhibited many times.
 
 ## Documentation
-* [Code Repository](https://github.com/pippinbarr/pongs) (includes the new JavaScript source code as well as the Flash Builder version from 2011)
+* [Code repository](https://github.com/pippinbarr/pongs) (includes the new JavaScript source code as well as the Flash Builder version from 2011)
 * [Journal](../process/journal.md) (blog posts written while I was making the original *PONGS*)
 
 ## License
