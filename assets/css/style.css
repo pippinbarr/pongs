@@ -1,1 +1,3 @@
+@import "{{ site.theme }}";
+
 @import url("https://pippinbarr.github.io/css/info.css")
