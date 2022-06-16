@@ -17,6 +17,7 @@ You may not be surprised to hear that *PONGS* is based on Atari's PONG. Sound ef
 
 ## Documentation
 * [Code Repository](https://github.com/pippinbarr/pongs) (includes the new JavaScript source code as well as the Flash Builder version from 2011)
+* [Journal](../process/journal.md) (blog posts written while I was making the original *PONGS*)
 
 ## License
 *PONGS* is an open source game licensed under a [Creative Commons Attribution-NonCommercial 3.0 Unported License](http://creativecommons.org/licenses/by-nc/3.0/). You can obtain the source code from its [code repository](https://github.com/pippinbarr/pongs/) on GitHub.
