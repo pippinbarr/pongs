@@ -13,6 +13,7 @@ This version has been ported to the also excellent [Phaser 3](https://phaser.io/
 
 You may not be surprised to hear that *PONGS* is based on Atari's PONG. Sound effects were made in [bfxr](http://www.bfxr.net/). The font in PONGS is [Commodore 64 Pixelized](http://www.dafont.com/commodore-64-pixelized.font) by [Devin Cook](http://www.devincook.com/). The references in PONGS are mostly pretty obvious, but if you haven't heard of [Shit Snake](http://www.draknek.org/games/shitsnake/) by [Draknek](http://www.draknek.org/) or [B.U.T.T.O.N.](http://gutefabrik.com/button.html) by [Die Gute Fabrik](http://gutefabrik.com/), then now you have!
 
+## Press
 PONGS was featured on [Kill Screen](https://killscreen.com/previously/articles/we-tried-all-36-pippin-barrs-variations-pong-so-you-dont-have-you-should/), [Free Indie Games](http://www.freeindiegam.es/2012/04/pongs-pippin-barr/), [The Verge](http://www.theverge.com/2012/4/11/2941458/pippin-barr-36-pongs-variations), [Rock, Paper, Shotgun](http://www.rockpapershotgun.com/2012/04/11/with-an-s-pongs-is-the-greatest-games/), ~~and [Edge Online](http://www.edge-online.com/features/friday-game-pongs)~~. It has also been discussed in German on [NEGATIV](http://www.negativ-film.de/pong-als-art-game-pippin-barrs-36-pongversionen/) ~~and [Superlevel](http://superlevel.de/spiele/pongs)!~~ [Lorenzo Pilia](http://www.tiif.it/) made an awesome controller for PONGS and you can [watch a video of it](http://www.youtube.com/watch?v=zLJdRQhcn0E)! *PONGS* has been exhibited many times.
 
 ## Documentation
