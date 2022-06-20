@@ -7,7 +7,7 @@
 ## Description
 *Bip! Bip! Bip! Boop! Everyone loves PONG! So everyone loves thirty six PONGS even more! Work those learning muscles with EDUTAINMENT PONG! Get serious with SERIOUS PONG! Shoot a laser gun in LASER PONG! Play PONG in PONG PONG! And many more!*
 
-Originally released on 11 April 2012) PONGS was written in ActionScript 3 using FlashBuilder 4.5 and the excellent [Flixel](http://www.flixel.org/) library.
+Originally released on 11 April 2012, PONGS was written in ActionScript 3 using FlashBuilder 4.5 and the excellent [Flixel](http://www.flixel.org/) library.
 
 This version has been ported to the also excellent [Phaser 3](https://phaser.io/) library for JavaScript.
 
